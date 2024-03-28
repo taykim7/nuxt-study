@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>홈페이지</h1>
-    <p>nuxt를 배워보자</p>
+    <h1>메인페이지</h1>
+    <p></p>
   </div>
 </template>
 
@@ -10,3 +10,7 @@ export default {
 
 }
 </script>
+
+<style>
+
+</style>
