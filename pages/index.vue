@@ -2,7 +2,10 @@
   <div class="app">
     <!-- <SearchInput :search-keyword="searchKeyword"
     @input="updateSearchKeyword"></SearchInput> -->
-    <SearchInput v-model="searchKeyword"></SearchInput>
+    <SearchInput
+      v-model="searchKeyword"
+      @search="searchProducts"
+    ></SearchInput>
     <main>
       <ul>
         <li v-for="product in products"
@@ -21,6 +24,7 @@
 <script> 
 import axios from 'axios';
 import SearchInput from '~/components/SearchInput.vue';
+import { fetchProductByKeyword } from '~/api';
 
 export default {
   components: { SearchInput },
@@ -47,8 +51,14 @@ export default {
       // nuxt 는 내부적으로 router가 세팅되어 있어서 바로 사용 가능
       this.$router.push(`detail/${id}`);      
     },
-    updateSearchKeyword(keyword) {
-      this.searchKeyword = keyword;
+    async searchProducts() {
+      const response = await fetchProductByKeyword(this.searchKeyword);
+      this.product = response.data.map(item => ({
+      ...item,
+      imageUrl: `https://picsum.photos/id/${Math.floor(
+      Math.random() * 30
+    )}/640/480`,
+    }));
     }
   }
 }
