@@ -1,8 +1,8 @@
 <template>
   <div class="app">
-    <div>
-      <input type="text" />
-    </div>
+    <!-- <SearchInput :search-keyword="searchKeyword"
+    @input="updateSearchKeyword"></SearchInput> -->
+    <SearchInput v-model="searchKeyword"></SearchInput>
     <main>
       <ul>
         <li v-for="product in products"
@@ -20,8 +20,10 @@
 
 <script> 
 import axios from 'axios';
+import SearchInput from '~/components/SearchInput.vue';
 
 export default {
+  components: { SearchInput },
   async asyncData() {
     // 이미지 api 종료되서 교체
     const response = await axios.get('http://localhost:3000/products');
@@ -34,10 +36,19 @@ export default {
     return { products };
   },
 
+  data() {
+    return {
+      searchKeyword: '',
+    }
+  },
+
   methods: {
     moveToDetailPage(id) {
       // nuxt 는 내부적으로 router가 세팅되어 있어서 바로 사용 가능
       this.$router.push(`detail/${id}`);      
+    },
+    updateSearchKeyword(keyword) {
+      this.searchKeyword = keyword;
     }
   }
 }
