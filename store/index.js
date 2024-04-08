@@ -14,7 +14,13 @@ export const state = () => ({
 
 export const mutations = {
   addCartItem(state, cartItems) {
-    state.cartItems.push(cartItems);
+    const newCartItem = {
+      ...cartItems,
+      imageUrl: `https://picsum.photos/id/${Math.floor(
+        Math.random() * 30
+      )}/640/480`
+    }
+    state.cartItems.push(newCartItem);
   },
   setCartItems(state, cartItems) {
     state.cartItems = cartItems;
@@ -25,6 +31,12 @@ export const actions = {
   // 동적으로 키값 정의
   async [FETCH_CART_ITEMS]({ commit }) {
     const { data } = await fetchCartItems();
-    commit('setCartItems', data);
+      commit('setCartItems', data.map(item => ({
+        ...item,
+        imageUrl: `https://picsum.photos/id/${Math.floor(
+          Math.random() * 30
+        )}/640/480`
+      }
+    )));
   }
 }
