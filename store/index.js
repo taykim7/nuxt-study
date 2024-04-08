@@ -40,17 +40,17 @@ export const actions = {
     )));
   },
   // nuxtServerInit
-  async nuxtServerInit(storeContext, nuxtContext) {
-    await storeContext.dispatch(FETCH_CART_ITEMS);
-    // const { data } = await fetchCartItems();
-    // storeContext.commit(
-    //   'setCartItems',
-    //   data.map(item => ({
-    //     ...item,
-    //     imageUrl: `https://picsum.photos/id/${Math.floor(
-    //       Math.random() * 30
-    //     )}/640/480`
-    //   }
-    // )));
-  }
+  // async nuxtServerInit(storeContext, nuxtContext) {
+  //   await storeContext.dispatch(FETCH_CART_ITEMS);
+  //   // const { data } = await fetchCartItems();
+  //   // storeContext.commit(
+  //   //   'setCartItems',
+  //   //   data.map(item => ({
+  //   //     ...item,
+  //   //     imageUrl: `https://picsum.photos/id/${Math.floor(
+  //   //       Math.random() * 30
+  //   //     )}/640/480`
+  //   //   }
+  //   // )));
+  // }
 }
