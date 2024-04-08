@@ -19,7 +19,7 @@
 
 <script>
 // 언더바를 붙힌 파일은 동적라우트로 정의된다.
-import { fetchProductById } from '@/api/index'
+import { fetchProductById, createCartItem } from '@/api/index'
 
 export default {
   async asyncData({ params }) {
@@ -32,7 +32,10 @@ export default {
     return { product }
   },
   methods: {
-    addToCart() {
+    async addToCart() {
+      const response = await createCartItem(this.product);
+      console.log(response);
+      
       this.$store.commit('addCartItem', this.product);
       this.$router.push(`/cart`);   
     }

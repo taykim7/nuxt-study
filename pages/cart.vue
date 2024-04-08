@@ -25,9 +25,12 @@
 </template>
 
 <script>
+import { FETCH_CART_ITEMS } from '@/store'
 // 넉스트의 다이나믹 라우팅으로 인해 별도의 라우터 등록없이 컴포넌트 생성만으로 바로 연결
 export default {
-
+  async asyncData({ store }) {
+    await store.dispatch(FETCH_CART_ITEMS);
+  }
 }
 </script>
 
